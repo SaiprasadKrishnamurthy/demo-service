@@ -1,9 +1,9 @@
-FROM maven:3.6.3-jdk-8-slim AS build
+FROM maven:3.6.3-openjdk-11-slim AS build
 WORKDIR /home/app
 COPY . /home/app
 RUN mvn -f /home/app/pom.xml clean package
 
-FROM openjdk:8-jdk-alpine
+FROM openjdk:11-jdk-alpine
 VOLUME /tmp
 EXPOSE 7000
 COPY --from=build /home/app/target/*.jar app.jar
