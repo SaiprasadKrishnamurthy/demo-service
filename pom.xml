@@ -96,7 +96,25 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+<!--			<plugin>-->
+<!--				<groupId>com.github.saiprasadkrishnamurthy</groupId>-->
+<!--				<artifactId>k8s-utils-maven-plugin</artifactId>-->
+<!--				<version>1.2</version>-->
+<!--				<executions>-->
+<!--					<execution>-->
+<!--						<id>generate-kubernetes-deployment-descriptors</id>-->
+<!--						<goals>-->
+<!--							<goal>generate-deployment</goal>-->
+<!--						</goals>-->
+<!--						<configuration>-->
+<!--							<dockerImageNamespace>saiprasadkrishnamurthy</dockerImageNamespace>-->
+<!--							<dockerImagePrefix>demo-service</dockerImagePrefix>-->
+<!--							<replicas>1</replicas>-->
+<!--							<volumeMount>/tmp</volumeMount>-->
+<!--						</configuration>-->
+<!--					</execution>-->
+<!--				</executions>-->
+<!--			</plugin>-->
 		</plugins>
 	</build>
-
 </project>
