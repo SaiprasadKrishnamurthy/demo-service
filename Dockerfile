@@ -1,16 +1,10 @@
-# For Java 8, try this
-# FROM openjdk:8-jdk-alpine
+FROM maven:3.6.3-jdk-8-slim AS build
+WORKDIR /home/app
+COPY . /home/app
+RUN mvn -f /home/app/pom.xml clean package
 
-# For Java 11, try this
-FROM adoptopenjdk/openjdk11:alpine-jre
-
-# Refer to Maven build -> finalName
-ARG JAR_FILE=target/app.jar
-
-# cd /opt/app
-WORKDIR /opt/app
-
-COPY ${JAR_FILE} app.jar
-
-# java -jar /opt/app/app.jar
-ENTRYPOINT ["java","-jar","app.jar"]
+FROM openjdk:8-jdk-alpine
+VOLUME /tmp
+EXPOSE 7000
+COPY --from=build /home/app/target/*.jar app.jar
+ENTRYPOINT [ "sh", "-c", "java $JAVA_OPTS -Djava.security.egd=file:/dev/./urandom -jar /app.jar" ]
