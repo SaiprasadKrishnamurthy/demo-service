@@ -3,7 +3,7 @@ WORKDIR /home/app
 COPY . /home/app
 RUN mvn -f /home/app/pom.xml clean package
 
-FROM openjdk:11-jdk-alpine
+FROM openjdk:11-jre-slim
 VOLUME /tmp
 EXPOSE 7000
 COPY --from=build /home/app/target/*.jar app.jar
